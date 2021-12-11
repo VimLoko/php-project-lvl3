@@ -11,26 +11,24 @@
     @endif
     @include('flash::message')
     <div class="container-lg">
-        <h1 class="mt-5 mb-3">Сайты</h1>
+        <h1 class="mt-5 mb-3">{{__('messages.menu_sites_page')}}</h1>
         <div class="table-responsive">
             <table class="table table-bordered table-hover text-nowrap">
                 <tbody>
                 <tr>
-                    <th>ID</th>
-                    <th>Имя</th>
-                    <th>Последняя проверка</th>
+                    <th>{{__('messages.table.ID')}}</th>
+                    <th>{{__('messages.table.table_column_name')}}</th>
                 </tr>
-                @foreach ($urls as $url)
-                    <tr>
-                        <td>{{$url->id}}</td>
-                        <td><a href="{{ route('urls.show', ['url' => $url->id]) }}">{{ $url->name }}</a></td>
-                        <td>{{$url->created_at}}</td>
-                    </tr>
-                @endforeach
+                @if ($urls)
+                    @foreach ($urls as $url)
+                        <tr>
+                            <td>{{$url->id}}</td>
+                            <td><a href="{{ route('urls.show', ['url' => $url->id]) }}">{{ $url->name }}</a></td>
+                        </tr>
+                    @endforeach
+                @endif
                 </tbody>
             </table>
-
-
         </div>
     </div>
 @stop

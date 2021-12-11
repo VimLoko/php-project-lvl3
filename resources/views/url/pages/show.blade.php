@@ -11,20 +11,20 @@
     @endif
     @include('flash::message')
     <div class="container-lg">
-        <h1 class="mt-5 mb-3">Сайт: {{ $urlRecord->name }}</h1>
+        <h1 class="mt-5 mb-3">{{__('messages.record.header_site')}}: {{ $urlRecord->name }}</h1>
         <div class="table-responsive">
             <table class="table table-bordered table-hover text-nowrap">
                 <tbody>
                 <tr>
-                    <td>ID</td>
+                    <td>{{__('messages.record.ID')}}</td>
                     <td>{{ $urlRecord->id }}</td>
                 </tr>
                 <tr>
-                    <td>Имя</td>
+                    <td>{{__('messages.record.record_name')}}</td>
                     <td>{{ $urlRecord->name }}</td>
                 </tr>
                 <tr>
-                    <td>Дата создания</td>
+                    <td>{{__('messages.record.record_created_at')}}</td>
                     <td>{{ $urlRecord->created_at }}</td>
                 </tr>
                 </tbody>

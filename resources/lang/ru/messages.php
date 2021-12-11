@@ -15,5 +15,15 @@ return [
         'url_isset' => 'URL-адрес уже существует',
         'url_created' => 'URL-адрес добавлен',
         'url_created_error' => 'URL-адреса не добавлен',
+    ],
+    'record' => [
+        'header_site' => 'Сайт',
+        'ID' => 'ID',
+        'record_name' => 'Имя',
+        'record_created_at' => 'Дата создания',
+    ],
+    'table' => [
+        'ID' => 'ID',
+        'table_column_name' => 'Имя',
     ]
 ];

@@ -14,5 +14,15 @@ return [
     'flash' => [
         'url_isset' => 'Url already exists',
         'url_created' => 'Url is added'
+    ],
+    'record' => [
+        'header_site' => 'Site',
+        'ID' => 'ID',
+        'record_name' => 'Name',
+        'record_created_at' => 'Created at',
+    ],
+    'table' => [
+        'ID' => 'ID',
+        'table_column_name' => 'Name',
     ]
 ];
