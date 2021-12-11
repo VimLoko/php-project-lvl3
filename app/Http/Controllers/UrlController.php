@@ -16,7 +16,12 @@ class UrlController extends Controller
      */
     public function index()
     {
-        $urls = DB::table('urls')->get();
+        $urls = DB::table('urls')
+            ->leftJoin('url_checks', 'urls.id', '=', 'url_checks.url_id')
+            ->select(DB::raw('urls.id, urls.name, MAX(url_checks.created_at) as last_check'))
+            ->groupBy('urls.id')
+            ->orderBy('urls.id')
+            ->get();
 
         return view('url.pages.list', compact('urls'));
     }
@@ -65,7 +70,11 @@ class UrlController extends Controller
 
         abort_unless($urlRecord, 404);
 
-        return view('url.pages.show', compact('urlRecord'));
+        $checks = DB::table('url_checks')
+            ->where('url_id', $id)
+            ->get();
+
+        return view('url.pages.show', compact('urlRecord', 'checks'));
     }
 
 }

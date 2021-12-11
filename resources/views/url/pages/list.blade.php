@@ -18,12 +18,14 @@
                 <tr>
                     <th>{{__('messages.table.ID')}}</th>
                     <th>{{__('messages.table.table_column_name')}}</th>
+                    <th>{{__('messages.table.table_column_last_check')}}</th>
                 </tr>
                 @if ($urls)
                     @foreach ($urls as $url)
                         <tr>
                             <td>{{$url->id}}</td>
                             <td><a href="{{ route('urls.show', ['url' => $url->id]) }}">{{ $url->name }}</a></td>
+                            <td>{{ $url->last_check }}</td>
                         </tr>
                     @endforeach
                 @endif

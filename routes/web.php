@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\UrlController;
 use \App\Http\Controllers\MainPageController;
+use App\Http\Controllers\UrlChecksController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +16,8 @@ use \App\Http\Controllers\MainPageController;
 */
 
 Route::get('/', [MainPageController::class, 'index'])->name('main');
+
+Route::post('/urls/{id}/checks', [UrlChecksController::class, 'store'])->name('check_url');
 
 Route::resource('urls', UrlController::class)
     ->only(['index', 'store', 'show'])

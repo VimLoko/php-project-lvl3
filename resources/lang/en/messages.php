@@ -4,6 +4,7 @@ return [
     'name_site' => 'Page analizator',
     'check_seo_for_free' => 'Check websites for SEO suitability for free',
     'btn_submit_check' => 'Check',
+    'btn_submit_check_url' => 'Check url',
     'menu_main_page' => 'Main',
     'menu_sites_page' => 'Sites',
     'errors' => [
@@ -13,7 +14,9 @@ return [
     ],
     'flash' => [
         'url_isset' => 'Url already exists',
-        'url_created' => 'Url is added'
+        'url_created' => 'Url is added',
+        'url_created_error' => 'Url is not added',
+        'url_check_created' => 'Page is successfully checked'
     ],
     'record' => [
         'header_site' => 'Site',
@@ -24,5 +27,6 @@ return [
     'table' => [
         'ID' => 'ID',
         'table_column_name' => 'Name',
+        'table_column_last_check' => 'Last check date',
     ]
 ];

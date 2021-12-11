@@ -2,49 +2,36 @@
 
 namespace Tests\Http\Controllers;
 
+use App\Http\Controllers\UrlChecksController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
-class UrlControllerTest extends TestCase
+class UrlChecksControllerTest extends TestCase
 {
-    private $id;
-
+    private $urlId;
     protected function setUp(): void
     {
         parent::setUp();
 
         $generatedHostName = 'http://' . strtolower(Str::random(5)) . ".ru";
         DB::beginTransaction();
-        $this->id = DB::table('urls')->insertGetId([
+        $this->urlId = DB::table('urls')->insertGetId([
             'name' => $generatedHostName,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
     }
 
-    public function testIndex()
-    {
-        $response = $this->get(route('urls.index'));
-        $response->assertOk();
-    }
-
     public function testStore()
     {
-        $generatedHostName = 'http://' . strtolower(Str::random(5)) . ".ru";
-        $urlData = ['url' => ['name' => $generatedHostName]];
-        $response = $this->post(route('urls.store'), $urlData);
+        $checkSiteId = ['id' => $this->urlId];
+        $response = $this->post(route('check_url', ['id' => $this->urlId]), $checkSiteId);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
 
-        $this->assertDatabaseHas('urls', $urlData['url']);
-    }
-
-    public function testShow()
-    {
-        $response = $this->get(route('urls.index', ['id' => $this->id]));
-        $response->assertOk();
+        $this->assertDatabaseHas('url_checks', ['url_id' => $this->urlId]);
     }
 
     public function tearDown(): void

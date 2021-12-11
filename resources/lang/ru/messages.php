@@ -4,6 +4,7 @@ return [
     'name_site' => 'Анализатор страниц',
     'check_seo_for_free' => 'Бесплатно проверяйте сайты на SEO пригодность',
     'btn_submit_check' => 'Проверить',
+    'btn_submit_check_url' => 'Запустить проверку',
     'menu_main_page' => 'Главная',
     'menu_sites_page' => 'Сайты',
     'errors' => [
@@ -15,6 +16,7 @@ return [
         'url_isset' => 'URL-адрес уже существует',
         'url_created' => 'URL-адрес добавлен',
         'url_created_error' => 'URL-адреса не добавлен',
+        'url_check_created' => 'Страница успешно проверена'
     ],
     'record' => [
         'header_site' => 'Сайт',
@@ -25,5 +27,6 @@ return [
     'table' => [
         'ID' => 'ID',
         'table_column_name' => 'Имя',
+        'table_column_last_check' => 'Последняя проверка'
     ]
 ];

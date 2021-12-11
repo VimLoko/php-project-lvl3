@@ -29,6 +29,26 @@
                 </tr>
                 </tbody>
             </table>
+            <h2 class="mt-5 mb-3">Проверки</h2>
+            {{ Form::open(['url' => route('check_url', ['id' => $urlRecord->id] )]) }}
+                {{ Form::submit(__('messages.btn_submit_check_url'), ['class' => 'btn btn-primary mb-3']) }}
+            {{ Form::close() }}
+            <table class="table table-bordered table-hover text-nowrap">
+                <tbody>
+                <tr>
+                    <th>ID</th>
+                    <th>Дата создания</th>
+                </tr>
+                @if ($checks)
+                    @foreach ($checks as $check)
+                        <tr>
+                            <td>{{ $check->id }}</td>
+                            <td>{{ $check->created_at }}</td>
+                        </tr>
+                    @endforeach
+                @endif
+                </tbody>
+            </table>
         </div>
     </div>
 @stop
