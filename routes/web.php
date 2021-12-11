@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\UrlController;
+use \App\Http\Controllers\MainPageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MainPageController::class, 'index'])->name('main');
+
+Route::resource('urls', UrlController::class)
+    ->only(['index', 'store', 'show'])
+    ->names([
+        'index' => 'urls.index',
+        'store' => 'urls.store',
+        'show' => 'urls.show',
+    ]);
