@@ -36,13 +36,15 @@
             <table class="table table-bordered table-hover text-nowrap">
                 <tbody>
                 <tr>
-                    <th>ID</th>
-                    <th>Дата создания</th>
+                    <th>{{__('messages.table_checks.ID')}}</th>
+                    <th>{{__('messages.table_checks.table_column_status_code')}}</th>
+                    <th>{{__('messages.table_checks.table_column_created_at')}}</th>
                 </tr>
                 @if ($checks)
                     @foreach ($checks as $check)
                         <tr>
                             <td>{{ $check->id }}</td>
+                            <td>{{ $check->status_code }}</td>
                             <td>{{ $check->created_at }}</td>
                         </tr>
                     @endforeach

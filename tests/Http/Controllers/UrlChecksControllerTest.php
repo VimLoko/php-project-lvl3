@@ -7,18 +7,21 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Http;
 
 class UrlChecksControllerTest extends TestCase
 {
     private $urlId;
+    private $generatedHostName;
+
     protected function setUp(): void
     {
         parent::setUp();
 
-        $generatedHostName = 'http://' . strtolower(Str::random(5)) . ".ru";
+        $this->generatedHostName = 'http://' . strtolower(Str::random(5)) . ".ru";
         DB::beginTransaction();
         $this->urlId = DB::table('urls')->insertGetId([
-            'name' => $generatedHostName,
+            'name' => $this->generatedHostName,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
@@ -26,12 +29,41 @@ class UrlChecksControllerTest extends TestCase
 
     public function testStore()
     {
-        $checkSiteId = ['id' => $this->urlId];
-        $response = $this->post(route('check_url', ['id' => $this->urlId]), $checkSiteId);
+        $checkSiteId = [
+            'id' => $this->urlId
+        ];
+
+        $html = file_get_contents(
+            implode(
+                DIRECTORY_SEPARATOR,
+                [__DIR__, '..', '..', "Fixtures", 'response.html']
+            )
+        );
+
+        if (!$html) {
+            throw new \Exception("Can't read response.html");
+        }
+
+        Http::fake([
+            $this->generatedHostName => Http::response($html, 200),
+        ]);
+
+        $response = $this->post(
+            route('check_url', $checkSiteId),
+            $checkSiteId
+        );
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
 
-        $this->assertDatabaseHas('url_checks', ['url_id' => $this->urlId]);
+        $record = [
+            'url_id' => $this->urlId,
+            'status_code' => 200,
+//            'h1' => 'Test H1',
+//            'title' => 'Test Title',
+//            'description' => 'test description'
+        ];
+
+        $this->assertDatabaseHas('url_checks', $record);
     }
 
     public function tearDown(): void

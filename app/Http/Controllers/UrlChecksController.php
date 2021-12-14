@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class UrlChecksController extends Controller
 {
@@ -21,13 +22,21 @@ class UrlChecksController extends Controller
 
         abort_unless($urlRecord, 404);
 
-        DB::table('url_checks')->insert([
-            'url_id' => $id,
-            'created_at' => Carbon::now()->toString(),
-            'updated_at' => Carbon::now()->toString()
-        ]);
+        try {
+            $response = Http::get($urlRecord->name);
+            $status = $response->status();
 
-        flash(__('messages.flash.url_check_created'))->success();
+            DB::table('url_checks')->insert([
+                'url_id' => $id,
+                'status_code' => $status,
+                'created_at' => Carbon::now()->toString(),
+                'updated_at' => Carbon::now()->toString()
+            ]);
+
+            flash(__('messages.flash.url_check_created'))->success();
+        } catch (\Exception $e) {
+            flash($e->getMessage())->error();
+        }
 
         return redirect()->route('urls.show', ['url' => $id]);
     }

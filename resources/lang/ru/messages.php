@@ -27,6 +27,12 @@ return [
     'table' => [
         'ID' => 'ID',
         'table_column_name' => 'Имя',
-        'table_column_last_check' => 'Последняя проверка'
+        'table_column_last_check' => 'Последняя проверка',
+        'table_column_status_code' => 'Код ответа'
+    ],
+    'table_checks' => [
+        'ID' => 'ID',
+        'table_column_created_at' => 'Дата создания',
+        'table_column_status_code' => 'Код ответа'
     ]
 ];

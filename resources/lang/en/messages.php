@@ -28,5 +28,11 @@ return [
         'ID' => 'ID',
         'table_column_name' => 'Name',
         'table_column_last_check' => 'Last check date',
+        'table_column_status_code' => 'Response code'
+    ],
+    'table_checks' => [
+        'ID' => 'ID',
+        'table_column_created_at' => 'Created at',
+        'table_column_status_code' => 'Response code'
     ]
 ];
