@@ -14,11 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: PHP Security Checker
-        uses: StephaneBour/actions-php-security-checker@1.1
-        with:
-          disable-exit-code: 1
-
       - name: Setup project
         run: make setup
 
