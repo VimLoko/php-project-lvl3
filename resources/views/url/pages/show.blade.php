@@ -38,6 +38,9 @@
                 <tr>
                     <th>{{__('messages.table_checks.ID')}}</th>
                     <th>{{__('messages.table_checks.table_column_status_code')}}</th>
+                    <th>{{__('messages.table_checks.table_column_h1')}}</th>
+                    <th>{{__('messages.table_checks.table_column_title')}}</th>
+                    <th>{{__('messages.table_checks.table_column_description')}}</th>
                     <th>{{__('messages.table_checks.table_column_created_at')}}</th>
                 </tr>
                 @if ($checks)
@@ -45,6 +48,9 @@
                         <tr>
                             <td>{{ $check->id }}</td>
                             <td>{{ $check->status_code }}</td>
+                            <td>{{ $check->h1 }}</td>
+                            <td>{{ $check->title }}</td>
+                            <td>{{ $check->description }}</td>
                             <td>{{ $check->created_at }}</td>
                         </tr>
                     @endforeach

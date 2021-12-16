@@ -33,6 +33,10 @@
                 @endif
                 </tbody>
             </table>
+            <div class="d-flex">
+                {!! $urls->links() !!}
+            </div>
         </div>
+
     </div>
 @stop

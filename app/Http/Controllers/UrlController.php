@@ -20,12 +20,15 @@ class UrlController extends Controller
                 select urls.id,
                 urls.name,
                 url_checks.status_code,
+                url_checks.h1,
+                url_checks.title,
+                url_checks.description,
                 url_checks.created_at,
                 row_number() over (partition by urls.id order by url_checks.created_at desc) as rn
                 from urls left join url_checks on urls.id = url_checks.url_id) t'))
             ->select('id', 'name', 'status_code', 'created_at')
             ->where('rn', 1)
-            ->get();
+            ->paginate();
 
         return view('url.pages.list', compact('urls'));
     }

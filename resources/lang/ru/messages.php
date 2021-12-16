@@ -33,6 +33,9 @@ return [
     'table_checks' => [
         'ID' => 'ID',
         'table_column_created_at' => 'Дата создания',
-        'table_column_status_code' => 'Код ответа'
+        'table_column_status_code' => 'Код ответа',
+        'table_column_h1' => 'H1',
+        'table_column_title' => 'Title',
+        'table_column_description' => 'Description',
     ]
 ];

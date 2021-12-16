@@ -58,9 +58,9 @@ class UrlChecksControllerTest extends TestCase
         $record = [
             'url_id' => $this->urlId,
             'status_code' => 200,
-//            'h1' => 'Test H1',
-//            'title' => 'Test Title',
-//            'description' => 'test description'
+            'h1' => 'Test H1',
+            'title' => 'Test Title',
+            'description' => 'test description'
         ];
 
         $this->assertDatabaseHas('url_checks', $record);

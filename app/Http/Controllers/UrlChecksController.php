@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use DiDom\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -25,10 +26,17 @@ class UrlChecksController extends Controller
         try {
             $response = Http::get($urlRecord->name);
             $status = $response->status();
+            $document = new Document($response->body());
+            $h1 = optional($document->first('h1'))->text();
+            $title = optional($document->first('title'))->text();
+            $description = optional($document->first('meta[name=description]'))->getAttribute('content');
 
             DB::table('url_checks')->insert([
                 'url_id' => $id,
                 'status_code' => $status,
+                'h1' => $h1,
+                'title' => $title,
+                'description' => $description,
                 'created_at' => Carbon::now()->toString(),
                 'updated_at' => Carbon::now()->toString()
             ]);
