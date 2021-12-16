@@ -16,6 +16,8 @@
         "laravelcollective/html": "^6.2"
     },
     "require-dev": {
+        "phpstan/phpstan-phpunit": "^0.12.16",
+        "phpstan/extension-installer": "^1.0",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
