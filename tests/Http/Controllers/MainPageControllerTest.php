@@ -3,7 +3,7 @@
 namespace Tests\Http\Controllers;
 
 use App\Http\Controllers\MainPageController;
-use Tests\TestCase;;
+use Tests\TestCase;
 
 class MainPageControllerTest extends TestCase
 {

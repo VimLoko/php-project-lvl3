@@ -83,5 +83,4 @@ class UrlController extends Controller
 
         return view('url.pages.show', compact('urlRecord', 'checks'));
     }
-
 }

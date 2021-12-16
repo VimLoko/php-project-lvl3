@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\UrlController;
-use \App\Http\Controllers\MainPageController;
+use App\Http\Controllers\UrlController;
+use App\Http\Controllers\MainPageController;
 use App\Http\Controllers\UrlChecksController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
