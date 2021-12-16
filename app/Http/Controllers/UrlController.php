@@ -16,12 +16,15 @@ class UrlController extends Controller
      */
     public function index()
     {
-        $urls = DB::table('urls')
-            ->leftJoin('url_checks', 'urls.id', '=', 'url_checks.url_id')
-            ->select(DB::raw('urls.id, urls.name, MAX(url_checks.created_at) as last_check, url_checks.status_code'))
-            ->groupBy('urls.id')
-            ->groupBy('url_checks.status_code')
-            ->orderBy('urls.id')
+        $urls = DB::table(DB::raw('(
+                select urls.id,
+                urls.name,
+                url_checks.status_code,
+                url_checks.created_at,
+                row_number() over (partition by urls.id order by url_checks.created_at desc) as rn
+                from urls left join url_checks on urls.id = url_checks.url_id) t'))
+            ->select('id', 'name', 'status_code', 'created_at')
+            ->where('rn', 1)
             ->get();
 
         return view('url.pages.list', compact('urls'));
