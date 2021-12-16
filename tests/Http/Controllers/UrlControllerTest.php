@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class UrlControllerTest extends TestCase
 {
-    private $id;
+    private int $id;
 
     protected function setUp(): void
     {

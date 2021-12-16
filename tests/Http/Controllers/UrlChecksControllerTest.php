@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Http;
 
 class UrlChecksControllerTest extends TestCase
 {
-    private $urlId;
-    private $generatedHostName;
+    private int $urlId;
+    private string $generatedHostName;
 
     protected function setUp(): void
     {
@@ -40,7 +40,7 @@ class UrlChecksControllerTest extends TestCase
             )
         );
 
-        if (!$html) {
+        if ($html  === false) {
             throw new \Exception("Can't read response.html");
         }
 
