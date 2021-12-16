@@ -47,8 +47,9 @@ class UrlControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         DB::rollBack();
+        parent::tearDown();
     }
 }

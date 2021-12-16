@@ -69,5 +69,6 @@ class UrlChecksControllerTest extends TestCase
     public function tearDown(): void
     {
         DB::rollBack();
+        parent::tearDown();
     }
 }
