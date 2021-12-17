@@ -41,7 +41,7 @@ class UrlController extends Controller
      */
     public function store(StoreUrlRequest $request)
     {
-        $validated = $request->safe()->only(['url.name']);
+        $validated = $request->only(['url.name']);
 
         $searchUrl = DB::table('urls')
             ->where('name', $validated['url'])

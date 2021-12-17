@@ -1,6 +1,7 @@
 parameters:
     checkMissingIterableValueType: false
     reportMaybesInPropertyPhpDocTypes: false
-    level: 4
+    level: 6
     paths:
         - tests
+        - app/Http/Controllers
